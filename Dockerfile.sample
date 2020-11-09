@@ -1,2 +1,5 @@
 FROM ubuntu:latest
 
+RUN sudo apt-get update
+
+FROM ubuntu:latest

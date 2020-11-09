@@ -17,30 +17,32 @@ type CheckOutput struct {
 }
 
 // DockerFileCheckStatus will return the status of check
-func DockerFileCheckStatus(check string, content *bufio.Scanner, description string, level string, recommendation string) []CheckOutput {
-	var checkOuput []CheckOutput
-	r, err := regexp.Compile(check)
-	if err != nil {
-		log.Errorf("Unable to compile the regular expression: %v", err)
-	}
+func DockerFileCheckStatus(content *bufio.Scanner) []CheckOutput {
+	var checkOutput []CheckOutput
+
 	line := 1
 	for content.Scan() {
-		if r.MatchString(content.Text()) {
-			checkOuput = append(checkOuput, CheckOutput{
-				LineNumber:     line,
-				Line:           content.Text(),
-				Description:    description,
-				Level:          level,
-				Recommendation: recommendation,
-			})
+		for _, rule := range rules.DockerFileRules {
+			r, err := regexp.Compile(rule.RegularExpression)
+			if err != nil {
+				log.Errorf("Unable to compile the regular expression: %v", err)
+			}
+			if r.MatchString(content.Text()) {
+				checkOutput = append(checkOuput, checkOutput{
+					LineNumber:     line,
+					Line:           content.Text(),
+					Description:    rule.Description,
+					Level:          rule.Level,
+					Recommendation: rule.Recommendation,
+				})
+			}
 		}
 		line++
 	}
 	return checkOuput
 }
 
+// CheckRules will check all the rules for Dockerfile
 func CheckRules(content *bufio.Scanner) {
-	for _, rule := range rules.DockerFileRules {
-		fmt.Println(DockerFileCheckStatus(rule.RegularExpression, content, rule.Description, rule.Level, rule.Recommendation))
-	}
+	fmt.Println(DockerFileCheckStatus(content))
 }
