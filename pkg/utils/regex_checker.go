@@ -28,7 +28,7 @@ func DockerFileCheckStatus(content *bufio.Scanner) []CheckOutput {
 				log.Errorf("Unable to compile the regular expression: %v", err)
 			}
 			if r.MatchString(content.Text()) {
-				checkOutput = append(checkOuput, checkOutput{
+				checkOutput = append(checkOutput, CheckOutput{
 					LineNumber:     line,
 					Line:           content.Text(),
 					Description:    rule.Description,
@@ -39,7 +39,7 @@ func DockerFileCheckStatus(content *bufio.Scanner) []CheckOutput {
 		}
 		line++
 	}
-	return checkOuput
+	return checkOutput
 }
 
 // CheckRules will check all the rules for Dockerfile
