@@ -23,6 +23,6 @@ var outputCmd = &cobra.Command{
 			os.Exit(1)
 		}
 		content := bufio.NewScanner(dockerFileContent)
-		utils.DockerFileCheckStatus("FROM .*:latest", content)
+		utils.CheckRules(content)
 	},
 }
