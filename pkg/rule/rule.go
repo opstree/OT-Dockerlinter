@@ -31,6 +31,7 @@ type Result struct {
 	Description string `json:"description"`
 	Message     string `json:"message"`
 	Severity    string `json:"severity"`
+	FileName    string `json:"file"`
 }
 
 // Dockerfile instruction.
@@ -311,6 +312,7 @@ func CreateMessage(rule *Rule, vrst []ValidateResult, fileName string) []Result 
 			Description: rule.Description,
 			Message:     rst.addMsg,
 			Severity:    rule.Severity,
+			FileName:    fileName,
 		})
 	}
 	return result

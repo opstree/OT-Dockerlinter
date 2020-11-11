@@ -37,7 +37,7 @@ func (ss *sliceString) Set(value string) error {
 
 func init() {
 	auditCmd.PersistentFlags().StringVarP(&dockerFilePath, "docker.file", "d", "Dockerfile", "Location of Dockerfile.")
-	auditCmd.PersistentFlags().StringVarP(&outputFormat, "ouput.format", "o", "table", "Output format of report. available options - json, table, xml")
+	auditCmd.PersistentFlags().StringVarP(&outputFormat, "ouput.format", "o", "table", "Output format of report. available options - json, table")
 	rootCmd.AddCommand(auditCmd)
 }
 
@@ -85,7 +85,7 @@ func printTable(result []rules.Result) {
 	}
 	defer csvFile.Close()
 	writer := csv.NewWriter(csvFile)
-	header := []string{"Line Number", "Line", "Code", "Description", "Severity"}
+	header := []string{"Line Number", "Line", "Code", "Description", "Severity", "Filename"}
 	writer.Write(header)
 	for _, data := range result {
 		var row []string
@@ -94,6 +94,7 @@ func printTable(result []rules.Result) {
 		row = append(row, data.Code)
 		row = append(row, data.Description)
 		row = append(row, data.Severity)
+		row = append(row, data.FileName)
 		writer.Write(row)
 	}
 	writer.Flush()
