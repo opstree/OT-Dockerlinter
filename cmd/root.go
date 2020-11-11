@@ -19,9 +19,6 @@ var (
 )
 
 func init() {
-	rootCmd.PersistentFlags().StringVarP(&dockerFilePath, "docker.file", "d", "Dockerfile", "Location of Dockerfile.")
-	rootCmd.PersistentFlags().StringVarP(&outputFormat, "ouput.format", "o", "table", "Output format of report, available options - json, table, xml")
-	rootCmd.PersistentFlags().StringVarP(&dockerFilePath, "docker.file", "d", "Dockerfile", "Location of Dockerfile.")
 	rootCmd.PersistentFlags().StringVarP(&logLevel, "log.level", "", logrus.InfoLevel.String(), "dockerfile-inspector logging level.")
 	rootCmd.PersistentFlags().StringVarP(&logFmt, "log.format", "", "text", "dockerfile-inspector log format.")
 	flag.Parse()
@@ -46,11 +43,6 @@ var rootCmd = &cobra.Command{
 				DisableColors: true,
 				FullTimestamp: true,
 			})
-		}
-		dockerFileContent, err = os.Open(dockerFilePath)
-		if err != nil {
-			logrus.Errorf("Error parsing config at %s: %v", dockerFilePath, err)
-			os.Exit(1)
 		}
 
 	},
