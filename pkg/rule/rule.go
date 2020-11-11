@@ -2,16 +2,18 @@
 package rules
 
 import (
-
+	"bufio"
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
+	"github.com/sirupsen/logrus"
+	"os"
 )
 
 // Rule is filtered rule (with ignore rule applied)
 // ValidateFunc func(node *parser.Node, file string) (rst []string, err error)
 type Rule struct {
-	Code         string   `json:"code"`
-	Severity     string   `json:"severity"`
-	Description  string   `json:"description"`
+	Code         string `json:"code"`
+	Severity     string `json:"severity"`
+	Description  string `json:"description"`
 	ValidateFunc func(node *parser.Node) ([]ValidateResult, error)
 }
 
@@ -23,11 +25,12 @@ type ValidateResult struct {
 
 // Result is filtered result
 type Result struct {
-	Line        int      `json:"line"`
-	Code        string   `json:"code"`
-	Description string   `json:"description"`
-	Message     string   `json:"message"`
-	Severity    string   `json:"severity"`
+	LineNumber  int    `json:"line_number"`
+	Line        string `json:"line"`
+	Code        string `json:"code"`
+	Description string `json:"description"`
+	Message     string `json:"message"`
+	Severity    string `json:"severity"`
 }
 
 // Dockerfile instruction.
@@ -298,11 +301,12 @@ func isContain(s []string, e string) bool {
 }
 
 // CreateMessage : create output message
-func CreateMessage(rule *Rule, vrst []ValidateResult) []Result {
+func CreateMessage(rule *Rule, vrst []ValidateResult, fileName string) []Result {
 	var result []Result
 	for _, rst := range vrst {
 		result = append(result, Result{
-			Line:        rst.line,
+			LineNumber:  rst.line,
+			Line:        scanFile(fileName, rst.line),
 			Code:        rule.Code,
 			Description: rule.Description,
 			Message:     rst.addMsg,
@@ -310,4 +314,39 @@ func CreateMessage(rule *Rule, vrst []ValidateResult) []Result {
 		})
 	}
 	return result
+}
+
+func scanFile(file string, line int) string {
+	var lineNumber int
+	var value string
+	// var text string
+	var lines []string
+
+	lines = readFile(file)
+
+	for count, lineValue := range lines {
+		lineNumber = count + 1
+		if lineNumber == line {
+			value = lineValue
+		}
+	}
+	return value
+}
+
+func readFile(config string) []string {
+	file, err := os.Open(config)
+	if err != nil {
+		logrus.Errorf("failed opening file: %s", err)
+	}
+
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+
+	var txtlines []string
+	for scanner.Scan() {
+		txtlines = append(txtlines, scanner.Text())
+	}
+	file.Close()
+
+	return txtlines
 }

@@ -3,15 +3,15 @@ package cmd
 import (
 	"dockerfile-inspector/pkg/analyzer"
 	"dockerfile-inspector/pkg/rule"
-	"encoding/json"
 	"encoding/csv"
-	"strconv"
+	"encoding/json"
 	"fmt"
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
-	"github.com/sirupsen/logrus"
 	"github.com/olekukonko/tablewriter"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
+	"strconv"
 )
 
 // Exit codes are int values that represent an exit code for a particular error.
@@ -63,7 +63,7 @@ func runAudit() {
 		os.Exit(1)
 	}
 	analyzer := linter.NewAnalyzer(ignoreRules)
-	rst, err := analyzer.Run(r.AST)
+	rst, err := analyzer.Run(r.AST, dockerFilePath)
 	if err != nil {
 		logrus.Errorf("Unable to run analyzer %s: %v", dockerFilePath, err)
 	}
@@ -85,11 +85,12 @@ func printTable(result []rules.Result) {
 	}
 	defer csvFile.Close()
 	writer := csv.NewWriter(csvFile)
-	header := []string{"Line Number", "Code", "Description", "Severity"}
+	header := []string{"Line Number", "Line", "Code", "Description", "Severity"}
 	writer.Write(header)
 	for _, data := range result {
 		var row []string
-		row = append(row, strconv.Itoa(data.Line))
+		row = append(row, strconv.Itoa(data.LineNumber))
+		row = append(row, data.Line)
 		row = append(row, data.Code)
 		row = append(row, data.Description)
 		row = append(row, data.Severity)
