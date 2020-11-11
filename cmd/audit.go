@@ -1,12 +1,13 @@
 package cmd
 
 import (
+	"dockerfile-inspector/pkg/analyzer"
+	"encoding/json"
+	"fmt"
+	"github.com/moby/buildkit/frontend/dockerfile/parser"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"os"
-	"github.com/moby/buildkit/frontend/dockerfile/parser"
-	"fmt"
-	"dockerfile-inspector/pkg/analyzer"
 )
 
 // Exit codes are int values that represent an exit code for a particular error.
@@ -62,5 +63,11 @@ func runAudit() {
 	if err != nil {
 		logrus.Errorf("Unable to run analyzer %s: %v", dockerFilePath, err)
 	}
-	fmt.Println(rst)
+	if outputFormat == "json" {
+		result, err := json.Marshal(rst)
+		if err != nil {
+			logrus.Errorf("Unable to convert output to JSON %v", err)
+		}
+		fmt.Println(string(result))
+	}
 }

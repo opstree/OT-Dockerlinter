@@ -57,9 +57,9 @@ type Severity struct {
 
 // Severity Level.
 var (
-	SeverityError      = Severity{Name: "ErrorC"}
-	SeverityWarning    = Severity{Name: "WarningC"}
-	SeverityInfo       = Severity{Name: "InfoC"}
+	SeverityError      = Severity{Name: "Error"}
+	SeverityWarning    = Severity{Name: "Warning"}
+	SeverityInfo       = Severity{Name: "Info"}
 	SeverityDeprecated = Severity{Name: "Deprecated"}
 )
 
