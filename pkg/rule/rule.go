@@ -2,7 +2,6 @@
 package rules
 
 import (
-	// "fmt"
 
 	"github.com/moby/buildkit/frontend/dockerfile/parser"
 )
@@ -11,7 +10,7 @@ import (
 // ValidateFunc func(node *parser.Node, file string) (rst []string, err error)
 type Rule struct {
 	Code         string   `json:"code"`
-	Severity     Severity `json:"severity"`
+	Severity     string   `json:"severity"`
 	Description  string   `json:"description"`
 	ValidateFunc func(node *parser.Node) ([]ValidateResult, error)
 }
@@ -28,7 +27,7 @@ type Result struct {
 	Code        string   `json:"code"`
 	Description string   `json:"description"`
 	Message     string   `json:"message"`
-	Severity    Severity `json:"severity"`
+	Severity    string   `json:"severity"`
 }
 
 // Dockerfile instruction.
@@ -50,17 +49,17 @@ const (
 	MAINTAINER = "maintainer"
 )
 
-// Severity stand check type.
-type Severity struct {
-	Name string
-}
+// // Severity stand check type.
+// type Severity struct {
+// 	Name string
+// }
 
 // Severity Level.
 var (
-	SeverityError      = Severity{Name: "Error"}
-	SeverityWarning    = Severity{Name: "Warning"}
-	SeverityInfo       = Severity{Name: "Info"}
-	SeverityDeprecated = Severity{Name: "Deprecated"}
+	SeverityError      = "Error"
+	SeverityWarning    = "Warning"
+	SeverityInfo       = "Info"
+	SeverityDeprecated = "Deprecated"
 )
 
 // RuleKeys is (Docker best practice rule key)
