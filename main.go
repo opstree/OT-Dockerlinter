@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"dockerfile-inspector/cmd"
+	"fmt"
 )
 
 var GitCommit string
