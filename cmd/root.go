@@ -19,15 +19,15 @@ var (
 )
 
 func init() {
-	rootCmd.PersistentFlags().StringVarP(&logLevel, "log.level", "", logrus.InfoLevel.String(), "dockerfile-inspector logging level.")
-	rootCmd.PersistentFlags().StringVarP(&logFmt, "log.format", "", "text", "dockerfile-inspector log format.")
+	rootCmd.PersistentFlags().StringVarP(&logLevel, "log.level", "", logrus.InfoLevel.String(), "ot-docker-linter logging level.")
+	rootCmd.PersistentFlags().StringVarP(&logFmt, "log.format", "", "text", "ot-docker-linter log format.")
 	flag.Parse()
 	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
 }
 
 var rootCmd = &cobra.Command{
-	Use:   "dockerfile-inspector",
-	Short: "dockerfile-inspector",
+	Use:   "ot-docker-linter",
+	Short: "ot-docker-linter",
 	Long:  `A tool for checking Dockerfile best practices.`,
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
 		parsedLevel, err := logrus.ParseLevel(logLevel)

@@ -43,8 +43,8 @@ func init() {
 
 var auditCmd = &cobra.Command{
 	Use:   "audit",
-	Short: "Runs dockerfile-inspector audit",
-	Long:  `Runs dockerfile-inspector audit`,
+	Short: "Runs ot-docker-linter audit",
+	Long:  `Runs ot-docker-linter audit`,
 	Run: func(cmd *cobra.Command, args []string) {
 		runAudit()
 	},
