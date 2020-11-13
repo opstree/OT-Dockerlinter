@@ -114,6 +114,7 @@ To generate results in JSON format
 ```shell
 $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 ```
+</details>
 
 <details>
 <summary>JSON Output</summary>
@@ -193,3 +194,4 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 	"file": "testing/Dockerfile.testing"
 }]
 ```
+</details>
