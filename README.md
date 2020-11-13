@@ -52,3 +52,59 @@ Flags:
 
 Use "ot-docker-linter [command] --help" for more information about a command.
 ```
+
+### Using Linter
+
+Simply specify the path of Dockerfile
+
+```shell
+$ ot-docker-linter audit --docker.file testing/Dockerfile.testing
+```
+
+<details>
+<summary>Output</summary>
+
+```shell
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| LINE NUMBER |             LINE             |    CODE     |          DESCRIPTION           | SEVERITY |          FILENAME          |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| 3           | WORKDIR spsp/                | DL3000      | Use absolute WORKDIR.          | Error    | testing/Dockerfile.testing |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| 5           | RUN sudo apt-get update && \ | DL3001      | For some bash commands it      | Info     | testing/Dockerfile.testing |
+|             |                              |             | makes no sense running them    |          |                            |
+|             |                              |             | in a Docker container like     |          |                            |
+|             |                              |             | `free`, `ifconfig`, `kill`,    |          |                            |
+|             |                              |             | `mount`, `ps`, `service`,      |          |                            |
+|             |                              |             | `shutdown`, `ssh`, `top`,      |          |                            |
+|             |                              |             | `vim`.                         |          |                            |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| 8           | USER root                    | DL3002      | Last USER should not be root.  | Warning  | testing/Dockerfile.testing |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| 5           | RUN sudo apt-get update && \ | DL3004      | Do not use sudo as it leads    | Error    | testing/Dockerfile.testing |
+|             |                              |             | to unpredictable behavior. Use |          |                            |
+|             |                              |             | a tool like gosu to enforce    |          |                            |
+|             |                              |             | root.                          |          |                            |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| 1           | FROM ubuntu:latest           | DL3007      | Using latest is prone to       | Warning  | testing/Dockerfile.testing |
+|             |                              |             | errors if the image will       |          |                            |
+|             |                              |             | ever update. Pin the version   |          |                            |
+|             |                              |             | explicitly to a release tag.   |          |                            |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| 5           | RUN sudo apt-get update && \ | DL3008      | Pin versions in apt            | Warning  | testing/Dockerfile.testing |
+|             |                              |             | get install. Instead of        |          |                            |
+|             |                              |             | `apt-get install <package>`    |          |                            |
+|             |                              |             | use `apt-get install           |          |                            |
+|             |                              |             | <package>=<version>`.          |          |                            |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| 5           | RUN sudo apt-get update && \ | DL3009      | Delete the apt-get lists after | Info     | testing/Dockerfile.testing |
+|             |                              |             | installing something.          |          |                            |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| 5           | RUN sudo apt-get update && \ | DL3014      | Use the `-y` switch to avoid   | Warning  | testing/Dockerfile.testing |
+|             |                              |             | manual input `apt-get -y       |          |                            |
+|             |                              |             | install <package>`.            |          |                            |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+| 5           | RUN sudo apt-get update && \ | DL3015      | Avoid additional               | Info     | testing/Dockerfile.testing |
+|             |                              |             | packages by specifying         |          |                            |
+|             |                              |             | `--no-install-recommends`.     |          |                            |
++-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
+```
