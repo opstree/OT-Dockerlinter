@@ -11,11 +11,11 @@ OT-Dockerlinter helps you in writing a Dockerfile with best practices. This tool
 - Cross platform support is available
 - Dockerfile best practices and recommendation
 
-### Quickstart
+## Quickstart
 
 A quickstart guide for installing, using and managing OT-Dockerlinter.
 
-#### Installation
+### Installation
 
 OT-Dockerlinter installation packages can be found inside [Releases](https://github.com/opstree/OT-Dockerlinter/releases)
 
@@ -29,7 +29,7 @@ Supported Platforms:-
 
 For installation on debian and redhat based system, `.deb` and `.rpm` packages can be used.
 
-#### Available Options
+### Available Options
 
 There are help page available for ot-dockerlinter which can be called by `help` or `--help` command.
 
