@@ -3,6 +3,8 @@
 </p>
 
 [![GitHub Super-Linter](https://github.com/opstree/OT-Dockerlinter/workflows/CI%Pipeline/badge.svg)](https://github.com/opstree/OT-Dockerlinter)
+[![made-with-Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg)](http://golang.org)
+![GitHub go.mod Go version (subdirectory of monorepo)](https://img.shields.io/github/go-mod/go-version/opstree/OT-Dockerlinter)
 [![Go Report Card](https://goreportcard.com/badge/github.com/opstree/OT-Dockerlinter)](https://goreportcard.com/report/github.com/opstree/OT-Dockerlinter)
 [![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/opstree/OT-Dockerlinter)
