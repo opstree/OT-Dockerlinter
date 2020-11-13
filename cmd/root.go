@@ -15,7 +15,6 @@ var (
 	logLevel          string
 	logFmt            string
 	version           string
-	dockerFileContent *os.File
 )
 
 func init() {
