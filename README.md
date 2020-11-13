@@ -206,9 +206,9 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 
 ### Roadmap
 
-- [ ] Add project badges in README
-- [ ] Fixed all linters warnings
-- [ ] Add CI workflow for linter
+- [X] Add project badges in README
+- [X] Fixed all linters warnings
+- [X] Add CI workflow for linter
 - [ ] Add JSON support in Jenkins warnings-ng plugin
 - [ ] Add more rules in checklist
 - [ ] Create a Jenkins shared library function to call it inside the Jenkinsfile
