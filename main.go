@@ -5,11 +5,9 @@ import (
 	"fmt"
 )
 
-var GitCommit string
-
-const (
-	// Version represents the current release version of dockerfile-inspector
-	Version = "v0.1"
+var (
+	GitCommit string
+	Version   string
 )
 
 func main() {
