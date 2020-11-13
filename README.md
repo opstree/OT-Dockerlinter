@@ -108,3 +108,88 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing
 |             |                              |             | `--no-install-recommends`.     |          |                            |
 +-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
 ```
+
+To generate results in JSON format
+
+```shell
+$ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
+```
+
+<details>
+<summary>Output</summary>
+
+```json
+[{
+	"line_number": 3,
+	"line": "WORKDIR spsp/",
+	"code": "DL3000",
+	"description": "Use absolute WORKDIR.",
+	"message": "",
+	"severity": "Error",
+	"file": "testing/Dockerfile.testing"
+}, {
+	"line_number": 5,
+	"line": "RUN sudo apt-get update \u0026\u0026 \\",
+	"code": "DL3001",
+	"description": "For some bash commands it makes no sense running them in a Docker container like `free`, `ifconfig`, `kill`, `mount`, `ps`, `service`, `shutdown`, `ssh`, `top`, `vim`.",
+	"message": "",
+	"severity": "Info",
+	"file": "testing/Dockerfile.testing"
+}, {
+	"line_number": 8,
+	"line": "USER root",
+	"code": "DL3002",
+	"description": "Last USER should not be root.",
+	"message": "",
+	"severity": "Warning",
+	"file": "testing/Dockerfile.testing"
+}, {
+	"line_number": 5,
+	"line": "RUN sudo apt-get update \u0026\u0026 \\",
+	"code": "DL3004",
+	"description": "Do not use sudo as it leads to unpredictable behavior. Use a tool like gosu to enforce root.",
+	"message": "",
+	"severity": "Error",
+	"file": "testing/Dockerfile.testing"
+}, {
+	"line_number": 1,
+	"line": "FROM ubuntu:latest",
+	"code": "DL3007",
+	"description": "Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag.",
+	"message": "",
+	"severity": "Warning",
+	"file": "testing/Dockerfile.testing"
+}, {
+	"line_number": 5,
+	"line": "RUN sudo apt-get update \u0026\u0026 \\",
+	"code": "DL3008",
+	"description": "Pin versions in apt get install. Instead of `apt-get install \u003cpackage\u003e` use `apt-get install \u003cpackage\u003e=\u003cversion\u003e`.",
+	"message": "",
+	"severity": "Warning",
+	"file": "testing/Dockerfile.testing"
+}, {
+	"line_number": 5,
+	"line": "RUN sudo apt-get update \u0026\u0026 \\",
+	"code": "DL3009",
+	"description": "Delete the apt-get lists after installing something.",
+	"message": "",
+	"severity": "Info",
+	"file": "testing/Dockerfile.testing"
+}, {
+	"line_number": 5,
+	"line": "RUN sudo apt-get update \u0026\u0026 \\",
+	"code": "DL3014",
+	"description": "Use the `-y` switch to avoid manual input `apt-get -y install \u003cpackage\u003e`.",
+	"message": "",
+	"severity": "Warning",
+	"file": "testing/Dockerfile.testing"
+}, {
+	"line_number": 5,
+	"line": "RUN sudo apt-get update \u0026\u0026 \\",
+	"code": "DL3015",
+	"description": "Avoid additional packages by specifying `--no-install-recommends`.",
+	"message": "",
+	"severity": "Info",
+	"file": "testing/Dockerfile.testing"
+}]
+```
