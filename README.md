@@ -2,6 +2,12 @@
   <img src="./static/ot-dockerlinter.svg" height="180" width="180">
 </p>
 
+[![GitHub Super-Linter](https://github.com/opstree/OT-Dockerlinter/workflows/CI%Pipeline/badge.svg)](https://github.com/opstree/OT-Dockerlinter)
+[![Go Report Card](https://goreportcard.com/badge/github.com/opstree/OT-Dockerlinter)](https://goreportcard.com/report/github.com/opstree/OT-Dockerlinter)
+[![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/opstree/OT-Dockerlinter)
+
+
 OT-Dockerlinter helps you in writing a Dockerfile with best practices. This tools can be integrated with your container native CI pipeline for Dockerfile's static code analysis and reporting.
 
 ### Supported Features
