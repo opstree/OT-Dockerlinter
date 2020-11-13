@@ -116,7 +116,7 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 ```
 
 <details>
-<summary>Output</summary>
+<summary>JSON Output</summary>
 
 ```json
 [{
