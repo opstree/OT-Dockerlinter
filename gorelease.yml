@@ -1,0 +1,77 @@
+project_name: ot-docker-linter
+builds:
+- main: main.go
+  binary: ot-docker-linter
+  ldflags:
+  - -X main.Version={{ .Version }}
+  env:
+  - CGO_ENABLED=0
+  goos:
+  - darwin
+  - linux
+  - windows
+  goarch:
+  - amd64
+  - 386
+  - arm
+  - arm64
+  goarm:
+  - 7
+
+nfpms:
+  -
+    formats:
+      - deb
+      - rpm
+    vendor: "opstree"
+    homepage: "https://github.com/opstree"
+    maintainer: "Abhishek Dubey <abhishekbhardwaj510@gmail.com>"
+    description: "A linter designed in golang for checking Dockerfile best practices"
+    license: "AGPL"
+    file_name_template: "{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}"
+    replacements:
+      amd64: 64bit
+      386: 32bit
+      arm: ARM
+      arm64: ARM64
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      openbsd: OpenBSD
+      netbsd: NetBSD
+      freebsd: FreeBSD
+      dragonfly: DragonFlyBSD
+
+archives:
+  -
+    format: tar.gz
+    format_overrides:
+    - goos: windows
+      format: zip
+    name_template: "{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}"
+    replacements:
+      amd64: 64bit
+      386: 32bit
+      arm: ARM
+      arm64: ARM64
+      darwin: macOS
+      linux: Linux
+      windows: Windows
+      openbsd: OpenBSD
+      netbsd: NetBSD
+      freebsd: FreeBSD
+      dragonfly: DragonFlyBSD
+    files:
+    - README.md
+    - LICENSE
+
+brews:
+  -
+    github:
+      owner: opstree
+      name: homebrew-r
+    folder: Formula
+    homepage: "https://github.com/opstree/OT-DockerLinter"
+    description: "A linter designed in golang for checking Dockerfile best practices."
+    test: |
+      system "#{bin}/program --version"
