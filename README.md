@@ -16,3 +16,12 @@ OT-Dockerlinter helps you in writing a Dockerfile with best practices. This tool
 A quickstart guide for installing, using and managing OT-Dockerlinter.
 
 #### Installation
+
+OT-Dockerlinter installation packages can be found inside [Releases](https://github.com/opstree/OT-Dockerlinter/releases)
+
+Supported Platforms:-
+
+- [X] Linux AMD64/ARM64/32Bit
+- [X] Windows AMD64/ARM64/32Bit
+
+For installation on debian and redhat based system, `.deb` and `.rpm` packages can be used.
