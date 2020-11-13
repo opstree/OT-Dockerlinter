@@ -108,13 +108,13 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing
 |             |                              |             | `--no-install-recommends`.     |          |                            |
 +-------------+------------------------------+-------------+--------------------------------+----------+----------------------------+
 ```
+</details>
 
 To generate results in JSON format
 
 ```shell
 $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 ```
-</details>
 
 <details>
 <summary>JSON Output</summary>
