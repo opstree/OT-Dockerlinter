@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="./static/ot-dockerlinter.svg" height="150" width="150">
+  <img src="./static/ot-dockerlinter.svg" height="180" width="180">
 </p>
 
 OT-Dockerlinter helps you in writing a Dockerfile with best practices. This tools can be integrated with your container native CI pipeline for Dockerfile's static code analysis and reporting.
