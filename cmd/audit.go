@@ -86,7 +86,10 @@ func printTable(result []rules.Result) {
 	defer csvFile.Close()
 	writer := csv.NewWriter(csvFile)
 	header := []string{"Line Number", "Line", "Code", "Description", "Severity", "Filename"}
-	writer.Write(header)
+	err = writer.Write(header)
+	if err != nil {
+		logrus.Errorf("Error in writing headers %v", err)
+	}
 	for _, data := range result {
 		var row []string
 		row = append(row, strconv.Itoa(data.LineNumber))
@@ -95,7 +98,10 @@ func printTable(result []rules.Result) {
 		row = append(row, data.Description)
 		row = append(row, data.Severity)
 		row = append(row, data.FileName)
-		writer.Write(row)
+		err = writer.Write(row)
+		if err != nil {
+			logrus.Errorf("Error in writing rows %v", err)
+		}
 	}
 	writer.Flush()
 

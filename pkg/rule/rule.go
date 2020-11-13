@@ -19,8 +19,8 @@ type Rule struct {
 
 // ValidateResult ValidateFunc's results.
 type ValidateResult struct {
-	line   int    `json:"line"`
-	addMsg string `json:"message"`
+	line   int
+	addMsg string
 }
 
 // Result is filtered result
@@ -321,10 +321,8 @@ func CreateMessage(rule *Rule, vrst []ValidateResult, fileName string) []Result 
 func scanFile(file string, line int) string {
 	var lineNumber int
 	var value string
-	// var text string
-	var lines []string
 
-	lines = readFile(file)
+	lines := readFile(file)
 
 	for count, lineValue := range lines {
 		lineNumber = count + 1

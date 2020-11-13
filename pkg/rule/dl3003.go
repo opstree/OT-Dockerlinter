@@ -13,8 +13,9 @@ func validateDL3003(node *parser.Node) (rst []ValidateResult, err error) {
 			for _, v := range strings.Fields(child.Next.Value) {
 				if v == "cd" {
 					rst = append(rst, ValidateResult{line: child.StartLine})
+				} else {
+					break
 				}
-				break
 			}
 		}
 	}
