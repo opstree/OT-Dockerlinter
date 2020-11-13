@@ -21,7 +21,15 @@ OT-Dockerlinter installation packages can be found inside [Releases](https://git
 
 Supported Platforms:-
 
-- [X] Linux AMD64/ARM64/32Bit
-- [X] Windows AMD64/ARM64/32Bit
+- Linux
+  - AMD64
+  - ARM63
+  - AMD32Bit
+  - ARM32Bit
+- Windows
+  - AMD64
+  - ARM63
+  - AMD32Bit
+  - ARM32Bit
 
 For installation on debian and redhat based system, `.deb` and `.rpm` packages can be used.
