@@ -28,3 +28,27 @@ Supported Platforms:-
   - ARM32Bit
 
 For installation on debian and redhat based system, `.deb` and `.rpm` packages can be used.
+
+#### Available Options
+
+There are help page available for ot-dockerlinter which can be called by `help` or `--help` command.
+
+```shell
+A tool for checking Dockerfile best practices.
+
+Usage:
+  ot-docker-linter [flags]
+  ot-docker-linter [command]
+
+Available Commands:
+  audit       Runs ot-docker-linter audit
+  help        Help about any command
+  version     Prints the current version.
+
+Flags:
+  -h, --help                help for ot-docker-linter
+      --log.format string   ot-docker-linter log format. (default "text")
+      --log.level string    ot-docker-linter logging level. (default "info")
+
+Use "ot-docker-linter [command] --help" for more information about a command.
+```
