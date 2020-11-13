@@ -21,12 +21,7 @@ OT-Dockerlinter installation packages can be found inside [Releases](https://git
 
 Supported Platforms:-
 
-- Linux
-  - AMD64
-  - ARM63
-  - AMD32Bit
-  - ARM32Bit
-- Windows
+- Linux and Windows Platform with supported architecture types:-
   - AMD64
   - ARM63
   - AMD32Bit
