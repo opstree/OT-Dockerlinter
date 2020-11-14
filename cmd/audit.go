@@ -10,6 +10,7 @@ import (
 	"github.com/olekukonko/tablewriter"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"github.com/tidwall/pretty"
 	"os"
 	"strconv"
 )
@@ -72,7 +73,8 @@ func runAudit() {
 		if err != nil {
 			logrus.Errorf("Unable to convert output to JSON %v", err)
 		}
-		fmt.Println(string(result))
+		prettyJSON := pretty.Pretty(result)
+		fmt.Println(string(prettyJSON))
 	} else if outputFormat == "table" {
 		printTable(rst)
 	}
