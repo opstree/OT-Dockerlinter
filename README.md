@@ -9,7 +9,6 @@
 [![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/opstree/OT-Dockerlinter)
 
-
 OT-Dockerlinter helps you in writing a Dockerfile with best practices. This tools can be integrated with your container native CI pipeline for Dockerfile's static code analysis and reporting.
 
 ### Supported Features
@@ -42,6 +41,7 @@ For installation on debian and redhat based system, `.deb` and `.rpm` packages c
 There are help page available for ot-dockerlinter which can be called by `help` or `--help` command.
 
 ```shell
+$ ot-docker-linter help
 A tool for checking Dockerfile best practices.
 
 Usage:
@@ -128,79 +128,89 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 <summary>JSON Output</summary>
 
 ```json
-[{
-	"line_number": 3,
-	"line": "WORKDIR spsp/",
-	"code": "DL3000",
-	"description": "Use absolute WORKDIR.",
-	"message": "",
-	"severity": "Error",
-	"file": "testing/Dockerfile.testing"
-}, {
-	"line_number": 5,
-	"line": "RUN sudo apt-get update \u0026\u0026 \\",
-	"code": "DL3001",
-	"description": "For some bash commands it makes no sense running them in a Docker container like `free`, `ifconfig`, `kill`, `mount`, `ps`, `service`, `shutdown`, `ssh`, `top`, `vim`.",
-	"message": "",
-	"severity": "Info",
-	"file": "testing/Dockerfile.testing"
-}, {
-	"line_number": 8,
-	"line": "USER root",
-	"code": "DL3002",
-	"description": "Last USER should not be root.",
-	"message": "",
-	"severity": "Warning",
-	"file": "testing/Dockerfile.testing"
-}, {
-	"line_number": 5,
-	"line": "RUN sudo apt-get update \u0026\u0026 \\",
-	"code": "DL3004",
-	"description": "Do not use sudo as it leads to unpredictable behavior. Use a tool like gosu to enforce root.",
-	"message": "",
-	"severity": "Error",
-	"file": "testing/Dockerfile.testing"
-}, {
-	"line_number": 1,
-	"line": "FROM ubuntu:latest",
-	"code": "DL3007",
-	"description": "Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag.",
-	"message": "",
-	"severity": "Warning",
-	"file": "testing/Dockerfile.testing"
-}, {
-	"line_number": 5,
-	"line": "RUN sudo apt-get update \u0026\u0026 \\",
-	"code": "DL3008",
-	"description": "Pin versions in apt get install. Instead of `apt-get install \u003cpackage\u003e` use `apt-get install \u003cpackage\u003e=\u003cversion\u003e`.",
-	"message": "",
-	"severity": "Warning",
-	"file": "testing/Dockerfile.testing"
-}, {
-	"line_number": 5,
-	"line": "RUN sudo apt-get update \u0026\u0026 \\",
-	"code": "DL3009",
-	"description": "Delete the apt-get lists after installing something.",
-	"message": "",
-	"severity": "Info",
-	"file": "testing/Dockerfile.testing"
-}, {
-	"line_number": 5,
-	"line": "RUN sudo apt-get update \u0026\u0026 \\",
-	"code": "DL3014",
-	"description": "Use the `-y` switch to avoid manual input `apt-get -y install \u003cpackage\u003e`.",
-	"message": "",
-	"severity": "Warning",
-	"file": "testing/Dockerfile.testing"
-}, {
-	"line_number": 5,
-	"line": "RUN sudo apt-get update \u0026\u0026 \\",
-	"code": "DL3015",
-	"description": "Avoid additional packages by specifying `--no-install-recommends`.",
-	"message": "",
-	"severity": "Info",
-	"file": "testing/Dockerfile.testing"
-}]
+[
+  {
+    "line_number": 3,
+    "line": "WORKDIR spsp/",
+    "code": "DL3000",
+    "description": "Use absolute WORKDIR.",
+    "message": "",
+    "severity": "Error",
+    "file": "testing/Dockerfile.testing"
+  }, 
+  {
+    "line_number": 5,
+    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "code": "DL3001",
+    "description": "For some bash commands it makes no sense running them in a Docker container like `free`, `ifconfig`, `kill`, `mount`, `ps`, `service`, `shutdown`, `ssh`, `top`, `vim`.",
+    "message": "",
+    "severity": "Info",
+    "file": "testing/Dockerfile.testing"
+  }, 
+  {
+    "line_number": 8,
+    "line": "USER root",
+    "code": "DL3002",
+    "description": "Last USER should not be root.",
+    "message": "",
+    "severity": "Warning",
+    "file": "testing/Dockerfile.testing"
+  }, 
+  {
+    "line_number": 5,
+    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "code": "DL3004",
+    "description": "Do not use sudo as it leads to unpredictable behavior. Use a tool like gosu to enforce root.",
+    "message": "",
+    "severity": "Error",
+    "file": "testing/Dockerfile.testing"
+  }, 
+  {
+    "line_number": 1,
+    "line": "FROM ubuntu:latest",
+    "code": "DL3007",
+    "description": "Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag.",
+    "message": "",
+    "severity": "Warning",
+    "file": "testing/Dockerfile.testing"
+  }, 
+  {
+    "line_number": 5,
+    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "code": "DL3008",
+    "description": "Pin versions in apt get install. Instead of `apt-get install \u003cpackage\u003e` use `apt-get install \u003cpackage\u003e=\u003cversion\u003e`.",
+    "message": "",
+    "severity": "Warning",
+    "file": "testing/Dockerfile.testing"
+  }, 
+  {
+    "line_number": 5,
+    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "code": "DL3009",
+    "description": "Delete the apt-get lists after installing something.",
+    "message": "",
+    "severity": "Info",
+    "file": "testing/Dockerfile.testing"
+  }, 
+  {
+    "line_number": 5,
+    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "code": "DL3014",
+    "description": "Use the `-y` switch to avoid manual input `apt-get -y install \u003cpackage\u003e`.",
+    "message": "",
+    "severity": "Warning",
+    "file": "testing/Dockerfile.testing"
+  }, 
+  {
+    "line_number": 5,
+    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "code": "DL3015",
+    "description": "Avoid additional packages by specifying `--no-install-recommends`.",
+    "message": "",
+    "severity": "Info",
+    "file": "testing/Dockerfile.testing"
+  }
+]
 ```
 </details>
 
@@ -211,6 +221,7 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 - [X] Add CI workflow for linter
 - [ ] Add JSON support in Jenkins warnings-ng plugin
 - [ ] Add more rules in checklist
+- [ ] Make JSON output pretty
 - [ ] Create a Jenkins shared library function to call it inside the Jenkinsfile
 
 ### Contact

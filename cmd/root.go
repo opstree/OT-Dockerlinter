@@ -10,11 +10,11 @@ import (
 )
 
 var (
-	dockerFilePath    string
-	outputFormat      string
-	logLevel          string
-	logFmt            string
-	version           string
+	dockerFilePath string
+	outputFormat   string
+	logLevel       string
+	logFmt         string
+	version        string
 )
 
 func init() {
