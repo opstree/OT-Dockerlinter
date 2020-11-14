@@ -222,6 +222,7 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 - [ ] Add JSON support in Jenkins warnings-ng plugin
 - [ ] Add more rules in checklist
 - [ ] Make JSON output pretty
+- [ ] Add a installation script for Linux and Windows systems
 - [ ] Create a Jenkins shared library function to call it inside the Jenkinsfile
 
 ### Contact
