@@ -140,7 +140,7 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
   }, 
   {
     "line_number": 5,
-    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "line": "RUN sudo apt-get update && \\",
     "code": "DL3001",
     "description": "For some bash commands it makes no sense running them in a Docker container like `free`, `ifconfig`, `kill`, `mount`, `ps`, `service`, `shutdown`, `ssh`, `top`, `vim`.",
     "message": "",
@@ -158,7 +158,7 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
   }, 
   {
     "line_number": 5,
-    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "line": "RUN sudo apt-get update && \\",
     "code": "DL3004",
     "description": "Do not use sudo as it leads to unpredictable behavior. Use a tool like gosu to enforce root.",
     "message": "",
@@ -176,16 +176,16 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
   }, 
   {
     "line_number": 5,
-    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "line": "RUN sudo apt-get update && \\",
     "code": "DL3008",
-    "description": "Pin versions in apt get install. Instead of `apt-get install \u003cpackage\u003e` use `apt-get install \u003cpackage\u003e=\u003cversion\u003e`.",
+    "description": "Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`.",
     "message": "",
     "severity": "Warning",
     "file": "testing/Dockerfile.testing"
   }, 
   {
     "line_number": 5,
-    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "line": "RUN sudo apt-get update && \\",
     "code": "DL3009",
     "description": "Delete the apt-get lists after installing something.",
     "message": "",
@@ -194,16 +194,16 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
   }, 
   {
     "line_number": 5,
-    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "line": "RUN sudo apt-get update && \\",
     "code": "DL3014",
-    "description": "Use the `-y` switch to avoid manual input `apt-get -y install \u003cpackage\u003e`.",
+    "description": "Use the `-y` switch to avoid manual input `apt-get -y install <package>`.",
     "message": "",
     "severity": "Warning",
     "file": "testing/Dockerfile.testing"
   }, 
   {
     "line_number": 5,
-    "line": "RUN sudo apt-get update \u0026\u0026 \\",
+    "line": "RUN sudo apt-get update && \\",
     "code": "DL3015",
     "description": "Avoid additional packages by specifying `--no-install-recommends`.",
     "message": "",
@@ -214,15 +214,21 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 ```
 </details>
 
+For whitelisting trusted registry, use env variables:-
+
+```shell
+export TRUSTED_REGISTRY=registry.opstree.com
+```
+
 ### Roadmap
 
 - [X] Add project badges in README
 - [X] Fixed all linters warnings
 - [X] Add CI workflow for linter
 - [ ] Add JSON support in Jenkins warnings-ng plugin
-- [ ] Add more rules in checklist
-- [ ] Make JSON output pretty
-- [ ] Add a installation script for Linux and Windows systems
+- [X] Add more rules in checklist
+- [ ] Add ignore flag
+- [X] Make JSON output pretty
 - [ ] Create a Jenkins shared library function to call it inside the Jenkinsfile
 
 ### Contact

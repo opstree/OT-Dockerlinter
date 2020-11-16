@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"bytes"
 	"dockerfile-inspector/pkg/analyzer"
 	"dockerfile-inspector/pkg/rule"
 	"encoding/csv"
@@ -69,15 +70,24 @@ func runAudit() {
 		logrus.Errorf("Unable to run analyzer %s: %v", dockerFilePath, err)
 	}
 	if outputFormat == "json" {
-		result, err := json.Marshal(rst)
+		result, err := convertJSONOutput(rst)
 		if err != nil {
 			logrus.Errorf("Unable to convert output to JSON %v", err)
 		}
 		prettyJSON := pretty.Pretty(result)
+		// output, err := convertJSONOutput(prettyJSON)
 		fmt.Println(string(prettyJSON))
 	} else if outputFormat == "table" {
 		printTable(rst)
 	}
+}
+
+func convertJSONOutput(data []rules.Result) ([]byte, error) {
+	buffer := &bytes.Buffer{}
+	encoder := json.NewEncoder(buffer)
+	encoder.SetEscapeHTML(false)
+	err := encoder.Encode(data)
+	return buffer.Bytes(), err
 }
 
 func printTable(result []rules.Result) {

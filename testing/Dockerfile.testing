@@ -1,8 +1,12 @@
-FROM ubuntu:latest
+FROM --platform=x86 ubuntu:latest
 
 WORKDIR spsp/
 
 RUN sudo apt-get update && \
     sudo apt-get install kill
+
+RUN apt-get install -y vim=2.0
+
+RUN yum install -y vim-2.0
 
 USER root
