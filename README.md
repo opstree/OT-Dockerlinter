@@ -29,12 +29,18 @@ OT-Dockerlinter installation packages can be found inside [Releases](https://git
 Supported Platforms:-
 
 - Linux and Windows Platform with supported architecture types:-
-  - AMD64
-  - ARM63
-  - AMD32Bit
-  - ARM32Bit
+  - Amd 64
+  - Arm 64
+  - Amd 32
+  - Arm 32
 
 For installation on debian and redhat based system, `.deb` and `.rpm` packages can be used.
+
+For installing on MacOS system, use brew:-
+
+```shell
+brew install ot-docker-linter
+```
 
 ### Available Options
 
