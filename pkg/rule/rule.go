@@ -93,6 +93,8 @@ var RuleKeys = []string{
 	"DL3023",
 	"DL3024",
 	"DL3025",
+	"DL3026",
+	"DL3027",
 	"DL4000",
 	"DL4001",
 	"DL4003",
@@ -252,6 +254,18 @@ var Rules = map[string]*Rule{
 		Severity:     SeverityWarning,
 		Description:  "Use arguments JSON notation for CMD and ENTRYPOINT arguments.",
 		ValidateFunc: validateDL3025,
+	},
+	"DL3026": {
+		Code:         "DL3026",
+		Severity:     SeverityError,
+		Description:  "Use only an allowed registry in the FROM image. Like:- " + os.Getenv("TRUSTED_REGISTRY"),
+		ValidateFunc: validateDL3026,
+	},
+	"DL3027": {
+		Code:         "DL3027",
+		Severity:     SeverityWarning,
+		Description:  "Do not use apt as it is meant to be an end-user tool, use apt-get or apt-cache instead.",
+		ValidateFunc: validateDL3027,
 	},
 	"DL4000": {
 		Code:         "DL4000",
