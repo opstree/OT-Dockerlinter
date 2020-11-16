@@ -13,7 +13,7 @@ func validateDL3026(node *parser.Node) (rst []ValidateResult, err error) {
 	if trustedRegistry != "" {
 		regexDL3026 := regexp.MustCompile(trustedRegistry + ".*")
 		for _, child := range node.Children {
-			if child.Value == FROM && regexDL3026.MatchString(child.Next.Value) != true {
+			if child.Value == FROM && !regexDL3026.MatchString(child.Next.Value) {
 				rst = append(rst, ValidateResult{line: child.StartLine})
 			}
 		}

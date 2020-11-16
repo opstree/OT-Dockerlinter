@@ -95,6 +95,8 @@ var RuleKeys = []string{
 	"DL3025",
 	"DL3026",
 	"DL3027",
+	"DL3029",
+	"DL3030",
 	"DL4000",
 	"DL4001",
 	"DL4003",
@@ -266,6 +268,18 @@ var Rules = map[string]*Rule{
 		Severity:     SeverityWarning,
 		Description:  "Do not use apt as it is meant to be an end-user tool, use apt-get or apt-cache instead.",
 		ValidateFunc: validateDL3027,
+	},
+	"DL3029": {
+		Code:         "DL3029",
+		Severity:     SeverityError,
+		Description:  "Do not use --platform= with FROM",
+		ValidateFunc: validateDL3029,
+	},
+	"DL3030": {
+		Code:         "DL3030",
+		Severity:     SeverityWarning,
+		Description:  "Use the -y switch to avoid manual input yum install -y <package>",
+		ValidateFunc: validateDL3030,
 	},
 	"DL4000": {
 		Code:         "DL4000",
