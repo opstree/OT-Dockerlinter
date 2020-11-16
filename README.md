@@ -226,7 +226,7 @@ export TRUSTED_REGISTRY=registry.opstree.com
 - [X] Fixed all linters warnings
 - [X] Add CI workflow for linter
 - [ ] Add JSON support in Jenkins warnings-ng plugin
-- [ ] Add more rules in checklist
+- [X] Add more rules in checklist
 - [ ] Add ignore flag
 - [X] Make JSON output pretty
 - [ ] Create a Jenkins shared library function to call it inside the Jenkinsfile
