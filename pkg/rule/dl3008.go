@@ -26,6 +26,15 @@ func validateDL3008(node *parser.Node) (rst []ValidateResult, err error) {
 				case "&&":
 					isAptGet, isInstall = false, false
 					continue
+				case "-y":
+					isAptGet, isInstall = false, false
+					continue
+				case "update":
+					isAptGet, isInstall = false, false
+					continue
+				case "upgrade":
+					isAptGet, isInstall = false, false
+					continue
 				default:
 					if isInstall && !regexDL3008.MatchString(v) && l == len(rst) {
 						rst = append(rst, ValidateResult{line: child.StartLine})

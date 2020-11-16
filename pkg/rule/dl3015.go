@@ -22,6 +22,8 @@ func validateDL3015(node *parser.Node) (rst []ValidateResult, err error) {
 					}
 				case "&&":
 					isAptGet, isInstalled = false, false
+				case "update":
+					isAptGet, isInstalled = false, false
 				default:
 					if isInstalled && v != "--no-install-recommends" && length == len(rst) {
 						rst = append(rst, ValidateResult{line: child.StartLine})

@@ -22,6 +22,8 @@ func validateDL3030(node *parser.Node) (rst []ValidateResult, err error) {
 					}
 				case "&&":
 					isYum, isInstalled = false, false
+				case "-y":
+					rst = append(rst, ValidateResult{line: child.StartLine})
 				default:
 					if isInstalled && !yesPattern.MatchString(v) && length == len(rst) {
 						rst = append(rst, ValidateResult{line: child.StartLine})

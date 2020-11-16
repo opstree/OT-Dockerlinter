@@ -214,6 +214,12 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 ```
 </details>
 
+For whitelisting trusted registry, use env variables:-
+
+```shell
+export TRUSTED_REGISTRY=registry.opstree.com
+```
+
 ### Roadmap
 
 - [X] Add project badges in README
@@ -221,6 +227,7 @@ $ ot-docker-linter audit --docker.file testing/Dockerfile.testing -o json
 - [X] Add CI workflow for linter
 - [ ] Add JSON support in Jenkins warnings-ng plugin
 - [ ] Add more rules in checklist
+- [ ] Add ignore flag
 - [X] Make JSON output pretty
 - [ ] Create a Jenkins shared library function to call it inside the Jenkinsfile
 
