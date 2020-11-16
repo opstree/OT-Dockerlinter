@@ -31,8 +31,8 @@ Supported Platforms:-
 - Linux and Windows Platform with supported architecture types:-
   - Amd 64
   - Arm 64
-  - Amd 32B
-  - Arm 32B
+  - Amd 32
+  - Arm 32
 
 For installation on debian and redhat based system, `.deb` and `.rpm` packages can be used.
 
