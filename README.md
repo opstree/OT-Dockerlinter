@@ -9,18 +9,18 @@
 [![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/opstree/OT-Dockerlinter)
 
-OT-Dockerlinter helps you in writing a Dockerfile with best practices. This tools can be integrated with your container native CI pipeline for Dockerfile's static code analysis and reporting.
+OT-Dockerlinter helps you in writing a Dockerfile with best practices. These tools can be integrated with your container's native CI pipeline for Dockerfile's static code analysis and reporting.
 
 ### Supported Features
 
-- Dockefile linting and reporting in different formats like table, json
+- Dockefile linting and reporting in different formats like table, JSON
 - Integration with Jenkins(In Development Mode)
-- Cross platform support is available
+- Cross-platform support is available
 - Dockerfile best practices and recommendation
 
 ## Quickstart
 
-A quickstart guide for installing, using and managing OT-Dockerlinter.
+A quick start guide for installing, using,and managing OT-Dockerlinter.
 
 ### Installation
 
@@ -34,9 +34,9 @@ Supported Platforms:-
   - Amd 32
   - Arm 32
 
-For installation on debian and redhat based system, `.deb` and `.rpm` packages can be used.
+For installation on Debian and the RedHat-based system, `.deb` and `.rpm` packages can be used.
 
-For installing on MacOS system, use brew:-
+For installing on macOS system, use brew:-
 
 ```shell
 brew install ot-docker-linter
@@ -44,7 +44,7 @@ brew install ot-docker-linter
 
 ### Available Options
 
-There are help page available for ot-dockerlinter which can be called by `help` or `--help` command.
+There is a help page available for ot-dockerlinter which can be called by `help` or `--help` command.
 
 ```shell
 $ ot-docker-linter help
@@ -229,16 +229,16 @@ export TRUSTED_REGISTRY=registry.opstree.com
 ### Roadmap
 
 - [X] Add project badges in README
-- [X] Fixed all linters warnings
+- [X] Fixed all linter warnings
 - [X] Add CI workflow for linter
 - [ ] Add JSON support in Jenkins warnings-ng plugin
-- [X] Add more rules in checklist
+- [X] Add more rules to the checklist
 - [ ] Add ignore flag
 - [X] Make JSON output pretty
 - [ ] Create a Jenkins shared library function to call it inside the Jenkinsfile
 
 ### Contact
 
-If you have any suggestion or query. Contact us at
+If you have any suggestions or queries. Contact us at
 
 opensource@opstree.com
